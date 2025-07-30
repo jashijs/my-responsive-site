@@ -1,104 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lv">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Responsive Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZS Testiņi</title>
   <style>
-    /* Reset some default styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --main-color: #4a7039;   /* Green */
+      --accent-color: #e7dbc8; /* Beige */
+      --text-color: #3b2e2a;   /* Dark brown */
     }
 
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
+      background-color: var(--accent-color);
+      color: var(--text-color);
       line-height: 1.6;
-      padding: 1rem;
     }
 
     header {
-      background: #333;
-      color: white;
-      padding: 1rem;
       text-align: center;
-    }
-
-    nav {
-      background: #444;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    nav a {
+      padding: 2em 1em 1em;
+      background-color: var(--main-color);
       color: white;
-      padding: 0.75rem 1rem;
-      text-decoration: none;
-      display: block;
     }
 
-    nav a:hover {
-      background: #555;
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: white;
+      margin: 0 auto 1em;
+      background-size: cover;
+      background-position: center;
     }
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1rem;
+    main {
+      padding: 2em 1em;
+      max-width: 800px;
+      margin: auto;
     }
 
-    .box {
-      flex: 1 1 100%;
-      background: #eee;
-      padding: 1rem;
-      border-radius: 5px;
+    section {
+      margin-bottom: 2em;
     }
 
-    /* Responsive layout for tablets and up */
-    @media (min-width: 768px) {
-      .box {
-        flex: 1 1 45%;
-      }
+    h1, h2 {
+      color: var(--main-color);
     }
 
-    /* For larger screens */
-    @media (min-width: 1024px) {
-      .box {
-        flex: 1 1 30%;
-      }
+    .contacts, .info {
+      background-color: white;
+      padding: 1em;
+      border-radius: 8px;
     }
 
     footer {
-      margin-top: 2rem;
       text-align: center;
-      color: #777;
+      padding: 1em;
+      font-size: 0.9em;
+      color: var(--text-color);
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        width: 90px;
+        height: 90px;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>My Responsive Website</h1>
+    <div class="logo" style="background-image: url('logo.png');"></div>
+    <h1>Zemnieku saimniecība "Testiņi"</h1>
   </header>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Projects</a>
-    <a href="#">Contact</a>
-  </nav>
+  <main>
+    <section>
+      <h2>Laipni lūgti!</h2>
+      <p>
+        Laipni lūgti zemnieku saimniecības "Testiņi" mājaslapā!
+      </p>
+      <p>
+        Testiņi kopš 2014. gada Latvijā audzē kaņepes un mārdadžus, no kuriem turpat saimniecībā tiek ražoti veselīgi produkti ikdienas uzturam. Šobrīd pircējiem varam piedāvāt dažādus kaņepju un mārdadžu produktus, kas jau kļuvuši novērtēti vairāku Kurzemes pilsētu gadatirgos.
+      </p>
+      <p>
+        Viens no iecienītākajiem produktiem ir grauzdētas un piestā grūstas kaņepes – dabisks un bagātīgs uztura papildinājums.
+      </p>
+    </section>
 
-  <section class="container">
-    <div class="box">Content Box 1</div>
-    <div class="box">Content Box 2</div>
-    <div class="box">Content Box 3</div>
-  </section>
+    <section class="contacts">
+      <h2>Kontakti</h2>
+      <p>📞 Tālrunis: <a href="tel:+37121234567">+371 21234567</a></p>
+      <p>📧 E-pasts: <a href="mailto:tests@inbox.lv">tests@inbox.lv</a></p>
+      <p>📍 Adrese: “Testiņi”, Pāļi, Kurļu pagasts, Meiju novads, Latvija, LV-4711</p>
+    </section>
+
+    <section class="info">
+      <h2>Rekvizīti</h2>
+      <p><strong>Nosaukums:</strong> Zemnieku saimniecība “Testiņš”</p>
+      <p><strong>Reģistrācijas numurs:</strong> 0000000000</p>
+      <p><strong>Banka:</strong> AS “SEB banka”</p>
+      <p><strong>SWIFT kods:</strong> UNLALV2X</p>
+      <p><strong>IBAN:</strong> LV00 UNLA 0000 0000 0000 0</p>
+    </section>
+  </main>
 
   <footer>
-    &copy; 2025 Your Name
+    &copy; 2025 ZS Testiņi. Visas tiesības aizsargātas.
   </footer>
 
 </body>
