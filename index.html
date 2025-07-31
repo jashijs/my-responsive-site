@@ -11,57 +11,59 @@
             --highlight: #b0d6a3;
             --background-color: #f7faf5;
         }
-        body {
+        html, body {
             margin: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            padding: 0;
+            width: 100vw;
             background: var(--background-color);
             color: var(--main-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
             text-align: center;
         }
         header {
             background: var(--accent-color);
+            width: 100vw;
+            min-height: 240px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding: 2.5rem 0 2.1rem 0;
-            min-height: 290px;
+            justify-content: flex-end;
             position: relative;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            margin-top: 1.2rem;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+            padding-bottom: 2rem;
         }
         .logo-img {
-            height: 180px;
-            width: 180px;
-            background: var(--accent-color);
+            height: 190px;
+            width: 190px;
+            margin: 0 auto 0 auto;
+            display: block;
             border-radius: 38px;
-            object-fit: contain;
             box-shadow: 0 4px 20px #b0d6a380;
+            background: var(--accent-color);
+            object-fit: contain;
         }
         .lang-switch {
+            position: absolute;
+            top: 18px;
+            right: 36px;
             display: flex;
-            gap: 0.1rem;
-            justify-content: center;
-            margin-top: 0.5rem;
+            gap: 0.05rem;
+            z-index: 10;
         }
         .lang-switch button {
             background: #fff;
             border: none;
-            font-size: 1.15rem;
+            font-size: 1rem;
             color: var(--main-color);
             cursor: pointer;
             font-weight: bold;
             letter-spacing: 1px;
-            padding: 0.24em 1.15em;
-            border-radius: 20px;
-            margin: 0 0.12em;
+            padding: 0.12em 0.7em;
+            border-radius: 13px;
+            margin: 0 0.07em;
             transition: background 0.15s, color 0.15s;
-            box-shadow: 0 1px 3px #aacfb244;
+            box-shadow: 0 1px 2px #aacfb233;
         }
         .lang-switch button.active,
         .lang-switch button:hover {
@@ -103,9 +105,7 @@
             text-align: left;
             display: block;
         }
-        .contacts {
-            margin-bottom: 0.6rem;
-        }
+        .contacts { margin-bottom: 0.6rem; }
         .company {
             background: var(--accent-color);
             margin-bottom: 2.1rem;
@@ -143,8 +143,10 @@
             margin: 0.5rem auto 1.8rem auto;
             border-radius: 14px;
             box-shadow: 0 2px 24px #aacfb288;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
         }
-        /* Lightbox styles */
+        /* Lightbox styles for gallery & article */
         .lightbox {
             display: none;
             position: fixed;
@@ -204,15 +206,14 @@
             .gallery-main { width: 98vw; height: 45vw; max-height: 56vw; }
             .article-img { max-width: 99vw; max-height: 65vw; }
             .contacts, .company { min-width: unset; width: 93vw; }
-            .logo-img { height: 74px; width: 74px; }
+            .logo-img { height: 110px; width: 110px; }
+            header { min-height: 120px; }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="LOGO_PLACEHOLDER.png" alt="Logo" class="logo-img" id="main-logo">
-        </div>
+        <img src="LOGO_PLACEHOLDER.png" alt="Logo" class="logo-img" id="main-logo">
         <div class="lang-switch">
             <button id="btn-lv" class="active" onclick="setLang('lv')">LV</button>
             <button id="btn-en" onclick="setLang('en')">EN</button>
@@ -248,7 +249,7 @@
                 </div>
             </div>
             <div class="section-title">Raksts par mums</div>
-            <img src="IMG_1614.jpg" class="article-img" alt="Raksts par Strazdiņi">
+            <img src="/mnt/data/IMG_1614.jpg" class="article-img" alt="Raksts par Strazdiņi" onclick="openArticleLightbox()">
         </section>
         <!-- EN -->
         <section class="lang-section en" style="display:none;">
@@ -278,7 +279,7 @@
                 </div>
             </div>
             <div class="section-title">Media Article</div>
-            <img src="/mnt/data/IMG_1614.jpg" class="article-img" alt="Article about farm">
+            <img src="/mnt/data/IMG_1614.jpg" class="article-img" alt="Article about farm" onclick="openArticleLightbox()">
         </section>
         <!-- ET -->
         <section class="lang-section et" style="display:none;">
@@ -308,10 +309,10 @@
                 </div>
             </div>
             <div class="section-title">Artikkel meist</div>
-            <img src="/mnt/data/IMG_1614.jpg" class="article-img" alt="Artikkel talust">
+            <img src="/mnt/data/IMG_1614.jpg" class="article-img" alt="Artikkel talust" onclick="openArticleLightbox()">
         </section>
     </main>
-    <!-- Lightbox Modal -->
+    <!-- Gallery Lightbox -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
             <button class="lightbox-arrow left" onclick="lightboxPrev(event)">&#8592;</button>
@@ -320,21 +321,32 @@
             <button class="lightbox-close" onclick="closeLightbox()">×</button>
         </div>
     </div>
+    <!-- Article Lightbox -->
+    <div class="lightbox" id="article-lightbox">
+        <div class="lightbox-content">
+            <img id="article-lightbox-img" src="/mnt/data/IMG_1614.jpg" alt="Raksts par Strazdiņi">
+            <button class="lightbox-close" onclick="closeArticleLightbox()">×</button>
+        </div>
+    </div>
     <script>
         // Gallery logic
         const galleryImages = [
+            "/mnt/data/IMGP9820.JPG",
+            "/mnt/data/IMGP9816.JPG",
+            "/mnt/data/IMGP9809.JPG",
+            "/mnt/data/IMGP9777.JPG",
+            "/mnt/data/IMGP9767.JPG",
+            "/mnt/data/IMGP9762.JPG",
             "/mnt/data/_IGP9657.JPG",
             "/mnt/data/_IGP9627.JPG",
             "/mnt/data/_IGP9599.JPG"
         ];
         let galleryIndex = 0;
-        // Update all visible gallery images
         function updateMainGallery() {
             document.querySelectorAll('.gallery-main img').forEach(img => {
                 img.src = galleryImages[galleryIndex];
             });
         }
-        // Lightbox logic
         function openLightbox() {
             document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
             document.getElementById('lightbox').classList.add('active');
@@ -356,6 +368,17 @@
         }
         document.getElementById('lightbox-img').onclick = function(e) { e.stopPropagation(); }
         document.getElementById('lightbox').onclick = function() { closeLightbox(); };
+
+        // Article Lightbox logic
+        function openArticleLightbox() {
+            document.getElementById('article-lightbox').classList.add('active');
+        }
+        function closeArticleLightbox() {
+            document.getElementById('article-lightbox').classList.remove('active');
+        }
+        document.getElementById('article-lightbox-img').onclick = function(e) { e.stopPropagation(); }
+        document.getElementById('article-lightbox').onclick = function() { closeArticleLightbox(); };
+
         // Language switching
         function setLang(lang) {
             document.querySelectorAll('.lang-section').forEach(el => el.style.display = 'none');
@@ -365,25 +388,4 @@
         }
         // Arrow keys for gallery in lightbox
         document.addEventListener('keydown', function(e){
-            if(!document.getElementById('lightbox').classList.contains('active')) return;
-            if(e.key==='ArrowLeft') lightboxPrev(e);
-            if(e.key==='ArrowRight') lightboxNext(e);
-            if(e.key==='Escape') closeLightbox();
-        });
-        // Clicking main image switches gallery index (cycling)
-        document.querySelectorAll('.gallery-main').forEach(div => {
-            div.onclick = function(){ openLightbox(); }
-        });
-        // Optional: cycle main image with click/tap (not just lightbox)
-        document.querySelectorAll('.gallery-main img').forEach(img => {
-            img.onclick = function(e){
-                e.stopPropagation();
-                galleryIndex = (galleryIndex + 1) % galleryImages.length;
-                updateMainGallery();
-            }
-        });
-        // Initial
-        updateMainGallery();
-    </script>
-</body>
-</html>
+            if(document.getElementById
