@@ -39,7 +39,6 @@
             margin: 0 auto 0 auto;
             display: block;
             border-radius: 38px;
-            box-shadow: 0 4px 20px #b0d6a380;
             background: var(--accent-color);
             object-fit: contain;
         }
@@ -152,12 +151,17 @@
             align-items: center;
             margin-bottom: 2rem;
         }
-        .gallery-main {
-            width: 360px;
-            height: 240px;
+        .gallery-main, .article-img {
+            max-width: 900px;
+            min-width: 400px;
+            width: 80vw;
             margin: 0 auto;
+            display: block;
+            border-radius: 14px;
+        }
+        .gallery-main {
+            height: 240px;
             position: relative;
-            border-radius: 16px;
             overflow: hidden;
             background: #e7eeda;
             box-shadow: 0 2px 14px #25412922;
@@ -169,14 +173,17 @@
             object-fit: cover;
         }
         .article-img {
-            max-width: 99%;
             max-height: 420px;
-            display: block;
             margin: 0.5rem auto 1.8rem auto;
-            border-radius: 14px;
             box-shadow: 0 2px 24px #aacfb288;
             cursor: pointer;
             transition: box-shadow 0.2s, transform 0.2s;
+        }
+        @media (max-width: 700px) {
+            .gallery-main, .article-img, .contacts, .company { min-width: unset; width: 93vw; }
+            .gallery-main { height: 45vw; max-height: 56vw; }
+            .logo-img { height: 110px; width: 110px; }
+            header { min-height: 120px; }
         }
         /* Lightbox styles for gallery & article */
         .lightbox {
@@ -265,17 +272,17 @@
             </div>
             <div class="section-title">Kontakti</div>
             <div class="contacts">
-                <b>Tālrunis:</b> +371 26495405&nbsp;&nbsp;&nbsp;
-                <b>E-pasts:</b> karlis@strazdio.lv&nbsp;&nbsp;&nbsp;
-                <b>Adrese:</b> “Strazdiņi”, Omuļi, Ērģemes pagasts, Valkas novads, Latvija, LV-4711
+                <b>📞 Tālrunis:</b> <a href="tel:+3726495405">+371 26495405</a><br>
+                <b>📧 E-pasts:</b> <a href="mailto:karlis@strazdio.lv">karlis@strazdio.lv</a><br>
+                <b>📍 Adrese:</b> “Strazdiņi”, Omuļi, Ērģemes pagasts, Valkas novads, Latvija, LV-4711
             </div>
             <div class="section-title">Rekvizīti</div>
             <div class="company">
-                Nosaukums: Zemnieku saimniecība “Strazdiņi”&nbsp;&nbsp;&nbsp;
-                Reģistrācijas numurs: 43901001741&nbsp;&nbsp;&nbsp;
-                Banka: AS “SEB banka”&nbsp;&nbsp;&nbsp;
-                SWIFT kods: UNLALV2X&nbsp;&nbsp;&nbsp;
-                Konta numurs (IBAN): LV33 UNLA 0017 0006 4381 0
+                <b>Nosaukums:</b> Zemnieku saimniecība “Strazdiņi”<br>
+                <b>Reģistrācijas numurs:</b> 43901001741<br>
+                <b>Banka:</b> AS “SEB banka”<br>
+                <b>SWIFT kods:</b> UNLALV2X<br>
+                <b>Konta numurs (IBAN):</b> LV33 UNLA 0017 0006 4381 0
             </div>
             <div class="section-title">Galerija</div>
             <div class="gallery-wrapper">
