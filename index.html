@@ -6,13 +6,10 @@
     <title>Kaņepju Produkti</title>
     <style>
         :root {
-//            --main-color: #254129;
-//            --accent-color: #e6eeda;
+            --main-color: #254129;
+            --accent-color: #e6eeda;
             --highlight: #b0d6a3;
             --background-color: #f7faf5;
-            --main-color: #4a7039;   /* Green */
-            --accent-color: #e7dbc8; /* Beige */
-//            --text-color: #3b2e2a;   /* Dark brown */
         }
         html, body {
             margin: 0;
@@ -46,15 +43,17 @@
             background: var(--accent-color);
             object-fit: contain;
         }
+        /* Updated Language Switch */
         .lang-switch {
             position: absolute;
             top: 18px;
             right: 36px;
             display: flex;
-            gap: 0.05rem;
+            flex-direction: column;
+            align-items: flex-end;
             z-index: 10;
         }
-        .lang-switch button {
+        #selected-lang {
             background: #fff;
             border: none;
             font-size: 1rem;
@@ -64,15 +63,41 @@
             letter-spacing: 1px;
             padding: 0.12em 0.7em;
             border-radius: 13px;
-            margin: 0 0.07em;
-            transition: background 0.15s, color 0.15s;
             box-shadow: 0 1px 2px #aacfb233;
+            min-width: 45px;
         }
-        .lang-switch button.active,
-        .lang-switch button:hover {
+        #selected-lang.active,
+        #selected-lang:hover {
             background: var(--highlight);
             color: #254129;
         }
+        #lang-menu {
+            display: none;
+            flex-direction: column;
+            margin-top: 0.2em;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #aacfb233;
+            overflow: hidden;
+            min-width: 45px;
+        }
+        #lang-menu button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: var(--main-color);
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 0.12em 0.7em;
+            border-radius: 0;
+            min-width: 45px;
+            text-align: right;
+        }
+        #lang-menu button:hover {
+            background: var(--highlight);
+        }
+
         main {
             max-width: 860px;
             margin: 1.4rem auto 0 auto;
@@ -95,6 +120,7 @@
             font-weight: bold;
             text-align: center;
         }
+        /* Wider, no-wrap contact and company info */
         .contacts, .company {
             background: var(--highlight);
             border-radius: 13px;
@@ -220,10 +246,13 @@
 <body>
     <header>
         <img src="/mnt/data/LOGO_PLACEHOLDER.png" alt="Logo" class="logo-img" id="main-logo">
-        <div class="lang-switch">
-            <button id="btn-lv" class="active" onclick="setLang('lv')">LV</button>
-            <button id="btn-en" onclick="setLang('en')">EN</button>
-            <button id="btn-et" onclick="setLang('et')">ET</button>
+        <div class="lang-switch" id="langSwitch">
+            <button id="selected-lang" onclick="toggleLangMenu()">LV</button>
+            <div id="lang-menu">
+                <button onclick="chooseLang('lv')">LV</button>
+                <button onclick="chooseLang('en')">EN</button>
+                <button onclick="chooseLang('et')">ET</button>
+            </div>
         </div>
     </header>
     <main>
@@ -236,16 +265,16 @@
             </div>
             <div class="section-title">Kontakti</div>
             <div class="contacts">
-                <b>📞 Tālrunis:</b> <a href="tel:+3726495405">+371 26495405</a><br>
-                <b>📧 E-pasts:</b> <a href="mailto:karlis@strazdio.lv">karlis@strazdio.lv</a><br>
-                <b>📍 Adrese:</b> “Strazdiņi”, Omuļi, Ērģemes pagasts, Valkas novads, Latvija, LV-4711
+                <b>Tālrunis:</b> +371 26495405&nbsp;&nbsp;&nbsp;
+                <b>E-pasts:</b> karlis@strazdio.lv&nbsp;&nbsp;&nbsp;
+                <b>Adrese:</b> “Strazdiņi”, Omuļi, Ērģemes pagasts, Valkas novads, Latvija, LV-4711
             </div>
             <div class="section-title">Rekvizīti</div>
             <div class="company">
-                Nosaukums: Zemnieku saimniecība “Strazdiņi”<br>
-                Reģistrācijas numurs: 43901001741<br>
-                Banka: AS “SEB banka”<br>
-                SWIFT kods: UNLALV2X<br>
+                Nosaukums: Zemnieku saimniecība “Strazdiņi”&nbsp;&nbsp;&nbsp;
+                Reģistrācijas numurs: 43901001741&nbsp;&nbsp;&nbsp;
+                Banka: AS “SEB banka”&nbsp;&nbsp;&nbsp;
+                SWIFT kods: UNLALV2X&nbsp;&nbsp;&nbsp;
                 Konta numurs (IBAN): LV33 UNLA 0017 0006 4381 0
             </div>
             <div class="section-title">Galerija</div>
@@ -266,16 +295,16 @@
             </div>
             <div class="section-title">Contacts</div>
             <div class="contacts">
-                <b>📞 Phone:</b> <a href="tel:+3726495405">+371 26495405</a><br>
-                <b>📧 Email:</b> <a href="mailto:karlis@strazdio.lv">karlis@strazdio.lv</a><br>
-                <b>📍 Address:</b> “Strazdiņi”, Omuļi, Ērģemes parish, Valkas region, Latvia, LV-4711      
+                <b>Phone:</b> +371 26495405&nbsp;&nbsp;&nbsp;
+                <b>Email:</b> karlis@strazdio.lv&nbsp;&nbsp;&nbsp;
+                <b>Address:</b> “Strazdiņi”, Omuļi, Ērģemes parish, Valkas region, Latvia, LV-4711
             </div>
             <div class="section-title">Company Info</div>
             <div class="company">
-                Name: Farm “Strazdiņi”<br>
-                Registration number: 43901001741<br>
-                Bank: AS “SEB banka”<br>
-                SWIFT code: UNLALV2X<br>
+                Name: Farm “Strazdiņi”&nbsp;&nbsp;&nbsp;
+                Registration number: 43901001741&nbsp;&nbsp;&nbsp;
+                Bank: AS “SEB banka”&nbsp;&nbsp;&nbsp;
+                SWIFT code: UNLALV2X&nbsp;&nbsp;&nbsp;
                 IBAN: LV33 UNLA 0017 0006 4381 0
             </div>
             <div class="section-title">Gallery</div>
@@ -296,16 +325,16 @@
             </div>
             <div class="section-title">Kontaktid</div>
             <div class="contacts">
-                <b>📞 Telefon:</b> <a href="tel:+3726495405">+371 26495405</a><br>
-                <b>📧 E-post:</b> <a href="mailto:karlis@strazdio.lv">karlis@strazdio.lv</a><<br>
-                <b>📍 Aadress:</b> “Strazdiņi”, Omuļi, Ērģeme vald, Valka piirkond, Läti, LV-4711
+                <b>Telefon:</b> +371 26495405&nbsp;&nbsp;&nbsp;
+                <b>E-post:</b> karlis@strazdio.lv&nbsp;&nbsp;&nbsp;
+                <b>Aadress:</b> “Strazdiņi”, Omuļi, Ērģeme vald, Valka piirkond, Läti, LV-4711
             </div>
             <div class="section-title">Ettevõtte andmed</div>
             <div class="company">
-                Nimi: Talu “Strazdiņi”<br>
-                Registreerimisnumber: 43901001741<br>
-                Pank: AS “SEB banka”<br>
-                SWIFT kood: UNLALV2X<br>
+                Nimi: Talu “Strazdiņi”&nbsp;&nbsp;&nbsp;
+                Registreerimisnumber: 43901001741&nbsp;&nbsp;&nbsp;
+                Pank: AS “SEB banka”&nbsp;&nbsp;&nbsp;
+                SWIFT kood: UNLALV2X&nbsp;&nbsp;&nbsp;
                 IBAN: LV33 UNLA 0017 0006 4381 0
             </div>
             <div class="section-title">Galerii</div>
@@ -379,12 +408,41 @@
         document.getElementById('article-lightbox-img').onclick = function(e) { e.stopPropagation(); }
         document.getElementById('article-lightbox').onclick = function() { closeArticleLightbox(); };
 
-        // Language switching
+        // Language switching - dropdown menu logic
+        let currentLang = 'lv';
+        function toggleLangMenu() {
+            const menu = document.getElementById('lang-menu');
+            if (menu.style.display === 'flex') menu.style.display = 'none';
+            else {
+                renderLangMenu();
+                menu.style.display = 'flex';
+            }
+        }
+        function chooseLang(lang) {
+            setLang(lang); // Use your existing setLang
+            currentLang = lang;
+            document.getElementById('selected-lang').innerText = lang.toUpperCase();
+            document.getElementById('lang-menu').style.display = 'none';
+        }
+        // Only show other (not current) languages in dropdown
+        function renderLangMenu() {
+            const menu = document.getElementById('lang-menu');
+            menu.querySelectorAll('button').forEach(btn => {
+                if (btn.innerText.toLowerCase() === currentLang) btn.style.display = 'none';
+                else btn.style.display = '';
+            });
+        }
+        document.addEventListener('click', function(e){
+            // close menu if click outside
+            if(!document.getElementById('langSwitch').contains(e.target)){
+                document.getElementById('lang-menu').style.display = 'none';
+            }
+        });
+
+        // Language display logic (from earlier)
         function setLang(lang) {
             document.querySelectorAll('.lang-section').forEach(el => el.style.display = 'none');
             document.querySelector('.' + lang).style.display = '';
-            document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + lang).classList.add('active');
         }
         // Arrow keys for gallery in lightbox
         document.addEventListener('keydown', function(e){
@@ -405,8 +463,11 @@
                 updateMainGallery();
             }
         });
-        // Initial image load
+        // Initial
         updateMainGallery();
+        // Set selected language text initially
+        document.getElementById('selected-lang').innerText = currentLang.toUpperCase();
+        setLang(currentLang);
     </script>
 </body>
 </html>
