@@ -6,7 +6,7 @@
     <title>Kaņepju Produkti</title>
     <style>
         :root {
-          --main-color: #2e42de;
+          --main-color: #2e4d2e;
           --accent-color: #6ea76e;
           --background-color: #fcfcfc;
           --secondary-color: #D4A556;
@@ -20,32 +20,30 @@
             font-family: 'Segoe UI', Arial, sans-serif;
             text-align: center;
         }
+        /* HEADER with cropped background */
         header {
-            background: var(--accent-color);
-            width: 100vw;
-            min-height: 240px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            position: relative;
-            margin-left: calc(50% - 50vw);
-            margin-right: calc(50% - 50vw);
-            padding-bottom: 2rem;
+          width: 100%;
+          height: 280px;                    /* adjust as needed */
+          background: url("/mnt/data/HEADER.JPG") center center;
+          background-size: cover;           /* crops top/bottom nicely */
+          position: relative;
+        }
+    
+        /* Logo sits just below the header */
+        .logo-container {
+          margin-top: -80px;               /* pull up if you want slight overlap */
+          text-align: center;
         }
         .logo-img {
-            width: 150vw;
-            height: 150vw;
-            max-width: 440px;
-            max-height: 440px;
-            min-width: 150px;
-            min-height: 150px;
-            margin: 0 auto 0 auto;
-            display: block;
-            border-radius: 10px;
-            background: var(--accent-color);
-            object-fit: contain;
-        }
+          width: 28vw;
+          max-width: 340px;
+          min-width: 150px;
+          height: auto;
+          display: inline-block;
+          border-radius: 10px;
+          background: var(--accent-color);
+          object-fit: contain;
+        } 
         .lang-switch {
             position: absolute;
             top: 18px;
