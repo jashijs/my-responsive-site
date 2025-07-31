@@ -177,12 +177,19 @@
             object-fit: cover;
         }
         .article-img {
-            max-height: 420px;
+            display: block;
             margin: 0.5rem auto 1.8rem auto;
+            border-radius: 14px;
             box-shadow: 0 2px 24px #aacfb288;
             cursor: pointer;
             transition: box-shadow 0.2s, transform 0.2s;
-        }
+            max-width: 900px;
+            min-width: 400px;
+            width: 80vw;
+            height: auto;           /* This keeps the aspect ratio */
+            object-fit: contain;    /* Prevents stretching */
+}
+
         @media (max-width: 700px) {
             .gallery-main, .article-img, .contacts, .company { min-width: unset; width: 93vw; }
             .gallery-main { height: 45vw; max-height: 56vw; }
