@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaņepju Produkti | Strazdiņi</title>
+    <title>Kaņepju Produkti</title>
     <style>
         :root {
-            --main-color: #244024;
-            --accent-color: #e7e1cb;
-            --highlight: #aacfb2;
-            --background-color: #fafaf8;
+            --main-color: #254129;
+            --accent-color: #e6eeda;
+            --highlight: #b0d6a3;
+            --background-color: #f7faf5;
         }
         body {
             margin: 0;
@@ -21,47 +21,51 @@
         header {
             background: var(--accent-color);
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
-            padding: 1.4rem 0 0.8rem 0;
+            justify-content: center;
+            padding: 0.8rem 0 0.8rem 0;
+            position: relative;
         }
         .logo {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            width: 100%;
         }
         .logo-img {
-            height: 78px;
-            width: 78px;
-            background: #eee;
-            border-radius: 14px;
+            height: 130px;
+            width: 130px;
+            background: var(--accent-color);
+            border-radius: 24px;
             object-fit: contain;
-            margin-bottom: 0.3rem;
         }
-        nav {
+        .lang-switch {
+            position: absolute;
+            top: 18px;
+            right: 28px;
             display: flex;
-            justify-content: center;
-            gap: 1.2rem;
-            margin-top: 0.4rem;
+            gap: 0.5rem;
         }
-        nav button {
+        .lang-switch button {
             background: none;
             border: none;
-            font-size: 1.11rem;
+            font-size: 1.2rem;
             color: var(--main-color);
             cursor: pointer;
             font-weight: bold;
             letter-spacing: 1px;
-            padding: 0.1em 0.4em;
-            transition: border-bottom 0.1s;
+            padding: 0.05em 0.4em;
+            border-radius: 6px;
+            transition: background 0.2s;
         }
-        nav button.active {
-            border-bottom: 2px solid var(--main-color);
+        .lang-switch button.active,
+        .lang-switch button:hover {
+            background: var(--highlight);
         }
         main {
             max-width: 860px;
-            margin: 1.7rem auto 0 auto;
+            margin: 1.4rem auto 0 auto;
             padding: 1.1rem;
         }
         h1 {
@@ -81,33 +85,29 @@
             font-weight: bold;
             text-align: center;
         }
-        .contacts {
+        .contacts, .company {
             background: var(--highlight);
-            padding: 1.3rem;
             border-radius: 13px;
+            padding: 1.3rem 1.1rem;
             margin: 0 auto 1.3rem auto;
             font-size: 1.08rem;
-            display: inline-block;
-            text-align: left;
-            min-width: 270px;
+            color: #254129;
+            max-width: 380px;
+            min-width: 220px;
             box-shadow: 0 2px 8px #aacfb258;
+            text-align: left;
+            display: block;
         }
-        .contacts,
-        .company {
-            margin-left: auto;
-            margin-right: auto;
+        .contacts {
+            margin-bottom: 0.6rem;
         }
         .company {
             background: var(--accent-color);
-            border-radius: 13px;
-            padding: 1.15rem 1.1rem;
-            margin: 1.1rem auto 2.1rem auto;
-            font-size: 0.99rem;
-            color: #264524;
-            max-width: 390px;
-            display: block;
-            text-align: left;
-            box-shadow: 0 2px 8px #aacfb220;
+            margin-bottom: 2.1rem;
+        }
+        .contacts, .company {
+            margin-left: auto;
+            margin-right: auto;
         }
         .gallery-wrapper {
             display: flex;
@@ -116,40 +116,20 @@
             margin-bottom: 2rem;
         }
         .gallery-main {
-            width: 320px;
-            height: 220px;
+            width: 360px;
+            height: 240px;
             margin: 0 auto;
             position: relative;
-            border-radius: 14px;
+            border-radius: 16px;
             overflow: hidden;
-            background: #e7e7e7;
-            box-shadow: 0 2px 14px #24402422;
+            background: #e7eeda;
+            box-shadow: 0 2px 14px #25412922;
+            cursor: pointer;
         }
         .gallery-main img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            cursor: pointer;
-        }
-        .gallery-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.1rem;
-        }
-        .gallery-controls button {
-            background: var(--accent-color);
-            color: var(--main-color);
-            border: none;
-            border-radius: 50%;
-            width: 38px; height: 38px;
-            font-size: 1.6rem;
-            cursor: pointer;
-            box-shadow: 0 1px 4px #aacfb220;
-            transition: background 0.13s;
-        }
-        .gallery-controls button:hover {
-            background: var(--highlight);
         }
         .article-img {
             max-width: 99%;
@@ -159,19 +139,13 @@
             border-radius: 14px;
             box-shadow: 0 2px 24px #aacfb288;
         }
-        @media (max-width: 700px) {
-            main { padding: 0.3rem; }
-            .gallery-main { width: 98vw; height: 45vw; max-height: 56vw; }
-            .article-img { max-width: 99vw; max-height: 65vw; }
-            .contacts, .company { min-width: unset; width: 93vw; }
-        }
         /* Lightbox styles */
         .lightbox {
             display: none;
             position: fixed;
             z-index: 999;
             left: 0; top: 0; width: 100vw; height: 100vh;
-            background: rgba(24,40,24,0.94);
+            background: rgba(36,65,41,0.93);
             justify-content: center;
             align-items: center;
         }
@@ -180,41 +154,52 @@
             position: relative;
             display: flex;
             align-items: center;
-            gap: 2vw;
         }
         .lightbox img {
-            max-width: 88vw;
-            max-height: 86vh;
-            border-radius: 14px;
+            max-width: 92vw;
+            max-height: 88vh;
+            border-radius: 16px;
             background: #fff;
             box-shadow: 0 2px 30px #24402477;
         }
-        .lightbox .arrow {
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             color: #fff;
-            font-size: 2.8rem;
+            font-size: 3.6rem;
             font-weight: bold;
-            cursor: pointer;
-            background: none;
+            background: rgba(30,50,30,0.38);
             border: none;
-            padding: 0 0.4em;
+            border-radius: 50%;
+            width: 56px; height: 56px;
+            cursor: pointer;
             user-select: none;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        .lightbox-arrow.left  { left: 12px; }
+        .lightbox-arrow.right { right: 12px; }
         .lightbox-close {
             position: absolute;
-            top: -30px; right: 0;
+            top: 16px; right: 30px;
             color: #fff;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
             cursor: pointer;
-            z-index: 1001;
             background: none;
             border: none;
             user-select: none;
+            z-index: 1002;
         }
         @media (max-width: 700px) {
-            .lightbox img { max-width: 98vw; max-height: 71vh; }
-            .lightbox-content { gap: 1vw; }
-            .lightbox-close { top: -12px; right: 0; }
+            main { padding: 0.3rem; }
+            .gallery-main { width: 98vw; height: 45vw; max-height: 56vw; }
+            .article-img { max-width: 99vw; max-height: 65vw; }
+            .contacts, .company { min-width: unset; width: 93vw; }
+            .logo-img { height: 74px; width: 74px; }
         }
     </style>
 </head>
@@ -223,15 +208,15 @@
         <div class="logo">
             <img src="LOGO_PLACEHOLDER.png" alt="Logo" class="logo-img" id="main-logo">
         </div>
-        <nav>
-            <button id="btn-lv" onclick="setLang('lv')">LV</button>
+        <div class="lang-switch">
+            <button id="btn-lv" class="active" onclick="setLang('lv')">LV</button>
             <button id="btn-en" onclick="setLang('en')">EN</button>
             <button id="btn-et" onclick="setLang('et')">ET</button>
-        </nav>
+        </div>
     </header>
     <main>
-        <!-- LATVIAN -->
-        <section class="lv">
+        <!-- LV -->
+        <section class="lang-section lv">
             <h1>Laipni lūgti zemnieku saimniecības mājaslapā!</h1>
             <div class="intro">
                 Strazdiņi kopš 2014. gada Latvijā audzē kaņepes un mārdadžus, no kuriem turpat saimniecībā tiek ražoti veselīgi produkti ikdienas uzturam. Šobrīd pircējiem varam piedāvāt dažādus kaņepju un mārdadžu produktus, kas jau kļuvuši novērtēti vairāku Vidzemes pilsētu gadatirgos.<br><br>
@@ -253,19 +238,15 @@
             </div>
             <div class="section-title">Galerija</div>
             <div class="gallery-wrapper">
-                <div class="gallery-main">
+                <div class="gallery-main" onclick="openLightbox()">
                     <img id="mainGalleryImage" src="/mnt/data/IMGP9820.JPG" alt="">
-                </div>
-                <div class="gallery-controls">
-                    <button onclick="switchGallery(-1)" aria-label="Iepriekšējais attēls">&#8592;</button>
-                    <button onclick="switchGallery(1)" aria-label="Nākamais attēls">&#8594;</button>
                 </div>
             </div>
             <div class="section-title">Raksts par mums</div>
             <img src="/mnt/data/IMG_1614.jpg" class="article-img" alt="Raksts par Strazdiņi">
         </section>
-        <!-- ENGLISH -->
-        <section class="en" style="display:none;">
+        <!-- EN -->
+        <section class="lang-section en" style="display:none;">
             <h1>Welcome to the farm homepage!</h1>
             <div class="intro">
                 Since 2014, the farm has been growing hemp and milk thistle in Latvia, producing healthy products for everyday nutrition right on the farm. Today, we offer a variety of hemp and milk thistle products, already appreciated at fairs in several Vidzeme towns.<br><br>
@@ -287,19 +268,15 @@
             </div>
             <div class="section-title">Gallery</div>
             <div class="gallery-wrapper">
-                <div class="gallery-main">
+                <div class="gallery-main" onclick="openLightbox()">
                     <img id="mainGalleryImageEN" src="/mnt/data/IMGP9820.JPG" alt="">
-                </div>
-                <div class="gallery-controls">
-                    <button onclick="switchGallery(-1)" aria-label="Previous image">&#8592;</button>
-                    <button onclick="switchGallery(1)" aria-label="Next image">&#8594;</button>
                 </div>
             </div>
             <div class="section-title">Media Article</div>
             <img src="/mnt/data/IMG_1614.jpg" class="article-img" alt="Article about farm">
         </section>
-        <!-- ESTONIAN -->
-        <section class="et" style="display:none;">
+        <!-- ET -->
+        <section class="lang-section et" style="display:none;">
             <h1>Tere tulemast talu kodulehele!</h1>
             <div class="intro">
                 Alates 2014. aastast kasvatatakse Lätis kanepit ja harilikku piimohakat ning toodetakse neist talu territooriumil tervislikke tooteid igapäevaseks toitumiseks. Praegu pakume erinevaid kanepi- ja ohakatooteid, mida on juba hinnatud Vidzeme linna laatadel.<br><br>
@@ -321,12 +298,8 @@
             </div>
             <div class="section-title">Galerii</div>
             <div class="gallery-wrapper">
-                <div class="gallery-main">
+                <div class="gallery-main" onclick="openLightbox()">
                     <img id="mainGalleryImageET" src="/mnt/data/IMGP9820.JPG" alt="">
-                </div>
-                <div class="gallery-controls">
-                    <button onclick="switchGallery(-1)" aria-label="Eelmine pilt">&#8592;</button>
-                    <button onclick="switchGallery(1)" aria-label="Järgmine pilt">&#8594;</button>
                 </div>
             </div>
             <div class="section-title">Artikkel meist</div>
@@ -336,9 +309,9 @@
     <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
-            <button class="arrow" id="lightbox-prev">&#8592;</button>
+            <button class="lightbox-arrow left" onclick="lightboxPrev(event)">&#8592;</button>
             <img id="lightbox-img" src="" alt="">
-            <button class="arrow" id="lightbox-next">&#8594;</button>
+            <button class="lightbox-arrow right" onclick="lightboxNext(event)">&#8594;</button>
             <button class="lightbox-close" onclick="closeLightbox()">×</button>
         </div>
     </div>
@@ -356,48 +329,62 @@
             "/mnt/data/_IGP9599.JPG"
         ];
         let galleryIndex = 0;
+        // Update all visible gallery images
         function updateMainGallery() {
             document.querySelectorAll('.gallery-main img').forEach(img => {
                 img.src = galleryImages[galleryIndex];
             });
         }
-        function switchGallery(step) {
-            galleryIndex += step;
-            if (galleryIndex < 0) galleryIndex = galleryImages.length - 1;
-            if (galleryIndex >= galleryImages.length) galleryIndex = 0;
-            updateMainGallery();
-        }
-        document.querySelectorAll('.gallery-main img').forEach(img => {
-            img.onclick = function() { openLightbox(galleryIndex); }
-        });
-
         // Lightbox logic
-        function openLightbox(index) {
-            galleryIndex = index;
+        function openLightbox() {
             document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
             document.getElementById('lightbox').classList.add('active');
         }
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
         }
-        document.getElementById('lightbox-prev').onclick = function(e) {
+        function lightboxPrev(e) {
             e.stopPropagation();
-            switchGallery(-1);
+            galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length;
             document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
+            updateMainGallery();
         }
-        document.getElementById('lightbox-next').onclick = function(e) {
+        function lightboxNext(e) {
             e.stopPropagation();
-            switchGallery(1);
+            galleryIndex = (galleryIndex + 1) % galleryImages.length;
             document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
+            updateMainGallery();
         }
-        document.getElementById('lightbox-img').onclick = function(e) {
-            e.stopPropagation();
-        }
-        document.getElementById('lightbox').onclick = function() {
-            closeLightbox();
-        };
+        document.getElementById('lightbox-img').onclick = function(e) { e.stopPropagation(); }
+        document.getElementById('lightbox').onclick = function() { closeLightbox(); };
         // Language switching
         function setLang(lang) {
-            document.body.className = lang;
-            document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + lang).classList.add
+            document.querySelectorAll('.lang-section').forEach(el => el.style.display = 'none');
+            document.querySelector('.' + lang).style.display = '';
+            document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+        // Arrow keys for gallery in lightbox
+        document.addEventListener('keydown', function(e){
+            if(!document.getElementById('lightbox').classList.contains('active')) return;
+            if(e.key==='ArrowLeft') lightboxPrev(e);
+            if(e.key==='ArrowRight') lightboxNext(e);
+            if(e.key==='Escape') closeLightbox();
+        });
+        // Clicking main image switches gallery index (cycling)
+        document.querySelectorAll('.gallery-main').forEach(div => {
+            div.onclick = function(){ openLightbox(); }
+        });
+        // Optional: cycle main image with click/tap (not just lightbox)
+        document.querySelectorAll('.gallery-main img').forEach(img => {
+            img.onclick = function(e){
+                e.stopPropagation();
+                galleryIndex = (galleryIndex + 1) % galleryImages.length;
+                updateMainGallery();
+            }
+        });
+        // Initial
+        updateMainGallery();
+    </script>
+</body>
+</html>
