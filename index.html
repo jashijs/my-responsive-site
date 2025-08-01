@@ -399,14 +399,9 @@
             "/mnt/data/IMAGE16.jpeg"
         ];
         let galleryIndex = 0;
-    
-        // Update all three preview images
         function updateGalleryMain() {
           document.getElementById('mainGalleryImage').src   = galleryImages[galleryIndex];
-          document.getElementById('mainGalleryImageEN').src = galleryImages[galleryIndex];
-          document.getElementById('mainGalleryImageET').src = galleryImages[galleryIndex];
         }
-    
         function openGalleryLightbox() {
           document.getElementById('gallery-lightbox-img').src = galleryImages[galleryIndex];
           document.getElementById('gallery-lightbox').classList.add('active');
@@ -428,11 +423,9 @@
           document.getElementById('gallery-lightbox-img').src = galleryImages[galleryIndex];
           updateGalleryMain();
         }
-    
         // Close on backdrop click
         document.getElementById('gallery-lightbox').onclick = closeGalleryLightbox;
         document.getElementById('gallery-lightbox-img').onclick = e => e.stopPropagation();
-    
         // Keyboard support
         document.addEventListener('keydown', e => {
           if (!document.getElementById('gallery-lightbox').classList.contains('active')) return;
@@ -440,20 +433,16 @@
           if (e.key === 'ArrowRight') galleryNext(e);
           if (e.key === 'Escape')     closeGalleryLightbox();
         });
-    
         // Click on any preview to cycle through thumbnails
-        ['mainGalleryImage','mainGalleryImageEN','mainGalleryImageET'].forEach(id => {
+        ['mainGalleryImage'].forEach(id => {
           document.getElementById(id).onclick = e => {
             e.stopPropagation();
             galleryIndex = (galleryIndex + 1) % galleryImages.length;
             updateGalleryMain();
           };
         });
-    
         // Initial load
         updateGalleryMain();
-    </script>
-    <script>
         // Article Lightbox logic
         function openArticleLightbox() {
             document.getElementById('article-lightbox').classList.add('active');
@@ -463,7 +452,6 @@
         }
         document.getElementById('article-lightbox-img').onclick = function(e) { e.stopPropagation(); }
         document.getElementById('article-lightbox').onclick = function() { closeArticleLightbox(); };
-
         // Language switching - dropdown menu logic
         let currentLang = 'lv';
         function toggleLangMenu() {
@@ -494,33 +482,11 @@
                 document.getElementById('lang-menu').style.display = 'none';
             }
         });
-
         // Language display logic (from earlier)
         function setLang(lang) {
             document.querySelectorAll('.lang-section').forEach(el => el.style.display = 'none');
             document.querySelector('.' + lang).style.display = '';
         }
-        // Arrow keys for gallery in lightbox
-        document.addEventListener('keydown', function(e){
-            if(document.getElementById('lightbox').classList.contains('active')) {
-                if(e.key==='ArrowLeft') lightboxPrev(e);
-                if(e.key==='ArrowRight') lightboxNext(e);
-                if(e.key==='Escape') closeLightbox();
-            }
-            if(document.getElementById('article-lightbox').classList.contains('active')) {
-                if(e.key==='Escape') closeArticleLightbox();
-            }
-        });
-        // Cycle main gallery with click/tap (not just lightbox)
-        document.querySelectorAll('.gallery-main img').forEach(img => {
-            img.onclick = function(e){
-                e.stopPropagation();
-                galleryIndex = (galleryIndex + 1) % galleryImages.length;
-                updateMainGallery();
-            }
-        });
-        // Initial
-        updateMainGallery();
         // Set selected language text initially
         document.getElementById('selected-lang').innerText = currentLang.toUpperCase();
         setLang(currentLang);
