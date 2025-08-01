@@ -272,6 +272,29 @@
         <img src="/mnt/data/LOGO_PLACEHOLDER.png" alt="Logo" class="logo-img" id="main-logo">
     </div>
     <main>
+        <!-- OT -->
+        <section class="lang-section ot">
+            <h1>nil</h1>
+            <div class="intro">
+                nil
+            </div>
+            <div class="section-title">nil</div>
+            <div class="contacts">
+                nil
+            </div>
+            <div class="section-title">nil</div>
+            <div class="company">
+                nil
+            </div>
+            <div class="section-title">nil</div>
+            <div class="gallery-wrapper">
+              <div class="gallery-main" onclick="openGalleryLightbox()">
+                <img id="mainGalleryImage" src="/mnt/data/IMAGE1.jpeg" alt="">
+              </div>
+            </div>
+            <div class="section-title">nil</div>
+            <img src="/mnt/data/ARTICLE1.jpeg" class="article-img" alt="nil" onclick="openArticleLightbox()">
+        </section>
         <!-- LV -->
         <section class="lang-section lv">
             <h1>Laipni lūgti Zemnieku saimniecības "Strazdiņi" mājaslapā!</h1>
@@ -454,7 +477,7 @@
         document.getElementById('article-lightbox-img').onclick = function(e) { e.stopPropagation(); }
         document.getElementById('article-lightbox').onclick = function() { closeArticleLightbox(); };
         // Language switching - dropdown menu logic
-        let currentLang = 'en';
+        let currentLang = 'lv';
         function toggleLangMenu() {
             const menu = document.getElementById('lang-menu');
             if (menu.style.display === 'flex') menu.style.display = 'none';
