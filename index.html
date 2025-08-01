@@ -363,6 +363,23 @@
             <img src="/mnt/data/ARTICLE1.jpeg" class="article-img" alt="Artikkel talust" onclick="openArticleLightbox()">
         </section>
     </main>
+    <!-- Gallery Lightbox -->
+    <div class="lightbox" id="gallery-lightbox">
+        <div class="lightbox-content">
+          <button class="lightbox-arrow left"  onclick="galleryPrev(event)">←</button>
+          //<img    id="gallery-lightbox-img" src="" alt="">
+          <img id="gallery-lightbox-img" src="/mnt/data/IMAGE1.jpeg" alt="Galerija">
+          <button class="lightbox-arrow right" onclick="galleryNext(event)">→</button>
+          <button class="lightbox-close"      onclick="closeGalleryLightbox()">×</button>
+        </div>
+    </div>
+    <!-- Article Lightbox -->
+    <div class="lightbox" id="article-lightbox">
+        <div class="lightbox-content">
+            <img id="article-lightbox-img" src="/mnt/data/ARTICLE1.jpeg" alt="Raksts par Strazdiņi">
+            <button class="lightbox-close" onclick="closeArticleLightbox()">×</button>
+        </div>
+    </div>
     <script>
       const galleryImages = [
             "/mnt/data/IMAGE1.jpeg",
