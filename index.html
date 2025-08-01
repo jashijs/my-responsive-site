@@ -365,12 +365,12 @@
     </main>
     <!-- Gallery Lightbox -->
     <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-arrow left" onclick="lightboxPrev(event)">&#8592;</button>
-            <img id="lightbox-img" src="" alt="">
-            <button class="lightbox-arrow right" onclick="lightboxNext(event)">&#8594;</button>
-            <button class="lightbox-close" onclick="closeLightbox()">×</button>
-        </div>
+      <div class="lightbox-content">
+        <button class="lightbox-arrow left" onclick="lightboxPrev(event)">←</button>
+        <img id="lightbox-img" src="" alt="">
+        <button class="lightbox-arrow right" onclick="lightboxNext(event)">→</button>
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+      </div>
     </div>
     <!-- Article Lightbox -->
     <div class="lightbox" id="article-lightbox">
@@ -380,8 +380,7 @@
         </div>
     </div>
     <script>
-        // Only images starting with "_"
-        const galleryImages = [
+      const galleryImages = [
             "/mnt/data/IMAGE1.jpeg",
             "/mnt/data/IMAGE2.jpeg",
             "/mnt/data/IMAGE3.jpeg",
@@ -398,35 +397,54 @@
             "/mnt/data/IMAGE14.jpeg",
             "/mnt/data/IMAGE15.jpeg",
             "/mnt/data/IMAGE16.jpeg"
-        ];
-        let galleryIndex = 0;
-        function updateMainGallery() {
-            document.querySelectorAll('.gallery-main img').forEach(img => {
-                img.src = galleryImages[galleryIndex];
-            });
-        }
-        function openLightbox() {
-            document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
-            document.getElementById('lightbox').classList.add('active');
-        }
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-        function lightboxPrev(e) {
-            e.stopPropagation();
-            galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length;
-            document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
-            updateMainGallery();
-        }
-        function lightboxNext(e) {
-            e.stopPropagation();
-            galleryIndex = (galleryIndex + 1) % galleryImages.length;
-            document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
-            updateMainGallery();
-        }
-        document.getElementById('lightbox-img').onclick = function(e) { e.stopPropagation(); }
-        document.getElementById('lightbox').onclick = function() { closeLightbox(); };
-
+      ];
+      let galleryIndex = 0;
+      function updateMainGallery() {
+        document.querySelectorAll('.gallery-main img')
+          .forEach(img => img.src = galleryImages[galleryIndex]);
+      }
+      function openLightbox() {
+        document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
+        document.getElementById('lightbox').classList.add('active');
+      }
+      function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+      }
+      function lightboxPrev(e) {
+        e.stopPropagation();
+        galleryIndex = (galleryIndex + galleryImages.length - 1) % galleryImages.length;
+        updateLightboxAndMain();
+      }
+      function lightboxNext(e) {
+        e.stopPropagation();
+        galleryIndex = (galleryIndex + 1) % galleryImages.length;
+        updateLightboxAndMain();
+      }
+      function updateLightboxAndMain() {
+        document.getElementById('lightbox-img').src = galleryImages[galleryIndex];
+        updateMainGallery();
+      }
+      // close on backdrop click
+      document.getElementById('lightbox').onclick = closeLightbox;
+      document.getElementById('lightbox-img').onclick = e => e.stopPropagation();
+      // arrow-key support
+      document.addEventListener('keydown', e => {
+        if (!document.getElementById('lightbox').classList.contains('active')) return;
+        if (e.key === 'ArrowLeft') lightboxPrev(e);
+        if (e.key === 'ArrowRight') lightboxNext(e);
+        if (e.key === 'Escape') closeLightbox();
+      });
+    
+      // allow click on main image to cycle
+      document.querySelector('.gallery-main img').onclick = e => {
+        e.stopPropagation();
+        galleryIndex = (galleryIndex + 1) % galleryImages.length;
+        updateMainGallery();
+      };
+      // initial load
+      updateMainGallery();
+    </script>
+    <script>
         // Article Lightbox logic
         function openArticleLightbox() {
             document.getElementById('article-lightbox').classList.add('active');
