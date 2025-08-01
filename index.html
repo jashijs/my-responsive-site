@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="/assets/js/lightbox-plus-jquery.js" defer></script>
+<html lang="lv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -184,7 +186,6 @@
             height: auto;           /* This keeps the aspect ratio */
             object-fit: contain;    /* Prevents stretching */
 }
-
         @media (max-width: 700px) {
             .gallery-main, .article-img, .contacts, .company { min-width: unset; width: 93vw; }
             .gallery-main { height: 45vw; max-height: 56vw; }
@@ -256,8 +257,6 @@
         }
     </style>
 </head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="/assets/js/lightbox-plus-jquery.js" defer></script>
 <body>
     <header>
         <div class="lang-switch" id="langSwitch">
@@ -455,7 +454,7 @@
         document.getElementById('article-lightbox-img').onclick = function(e) { e.stopPropagation(); }
         document.getElementById('article-lightbox').onclick = function() { closeArticleLightbox(); };
         // Language switching - dropdown menu logic
-        let currentLang = 'lv';
+        let currentLang = 'en';
         function toggleLangMenu() {
             const menu = document.getElementById('lang-menu');
             if (menu.style.display === 'flex') menu.style.display = 'none';
