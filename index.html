@@ -24,7 +24,7 @@
         header {
           width: 100%;
           height: 150px;                    /* adjust as needed */
-          background: url("/mnt/data/HEADER.JPG") center center;
+          background: url("/mnt/data/HEADER.jpeg") center center;
           background-size: cover;           /* crops top/bottom nicely */
           position: relative;
         }
@@ -165,7 +165,6 @@
             position: relative;
             overflow: hidden;
             background: var(--accent-color);
-            //box-shadow: 0 2px 14px #25412922;
             cursor: pointer;
         }
         .gallery-main img {
@@ -177,7 +176,6 @@
             display: block;
             margin: 0.5rem auto 1.8rem auto;
             border-radius: 14px;
-            //box-shadow: 0 2px 24px #aacfb288;
             cursor: pointer;
             transition: box-shadow 0.2s, transform 0.2s;
             max-width: 900px;
@@ -297,11 +295,11 @@
             <div class="section-title">Galerija</div>
             <div class="gallery-wrapper">
                 <div class="gallery-main" onclick="openLightbox()">
-                    <img id="mainGalleryImage" src="/mnt/data/_IGP9657.JPG" alt="">
+                    <img id="mainGalleryImage" src="/mnt/data/IMAGE1.jpeg" alt="">
                 </div>
             </div>
             <div class="section-title">Raksts par mums</div>
-            <img src="/mnt/data/mekle_bernibas_garsu.jpg" class="article-img" alt="Raksts par Strazdiņi" onclick="openArticleLightbox()">
+            <img src="/mnt/data/ARTICLE1.jpeg" class="article-img" alt="Raksts par Strazdiņi" onclick="openArticleLightbox()">
         </section>
         <!-- EN -->
         <section class="lang-section en" style="display:none;">
@@ -327,11 +325,11 @@
             <div class="section-title">Gallery</div>
             <div class="gallery-wrapper">
                 <div class="gallery-main" onclick="openLightbox()">
-                    <img id="mainGalleryImageEN" src="/mnt/data/_IGP9657.jpg" alt="">
+                    <img id="mainGalleryImageEN" src="/mnt/data/IMAGE1.jpeg" alt="">
                 </div>
             </div>
             <div class="section-title">Media Article</div>
-            <img src="/mnt/data/mekle_bernibas_garsu.jpg" class="article-img" alt="Article about farm" onclick="openArticleLightbox()">
+            <img src="/mnt/data/ARTICLE1.jpeg" class="article-img" alt="Article about farm" onclick="openArticleLightbox()">
         </section>
         <!-- ET -->
         <section class="lang-section et" style="display:none;">
@@ -357,11 +355,11 @@
             <div class="section-title">Galerii</div>
             <div class="gallery-wrapper">
                 <div class="gallery-main" onclick="openLightbox()">
-                    <img id="mainGalleryImageET" src="/mnt/data/_IGP9657.JPG" alt="">
+                    <img id="mainGalleryImageET" src="/mnt/data/IMAGE1.jpeg" alt="">
                 </div>
             </div>
             <div class="section-title">Artikkel meist</div>
-            <img src="/mnt/data/mekle_bernibas_garsu.jpg" class="article-img" alt="Artikkel talust" onclick="openArticleLightbox()">
+            <img src="/mnt/data/ARTICLE1.jpeg" class="article-img" alt="Artikkel talust" onclick="openArticleLightbox()">
         </section>
     </main>
     <!-- Gallery Lightbox -->
@@ -376,16 +374,29 @@
     <!-- Article Lightbox -->
     <div class="lightbox" id="article-lightbox">
         <div class="lightbox-content">
-            <img id="article-lightbox-img" src="/mnt/data/mekle_bernibas_garsu.jpg" alt="Raksts par Strazdiņi">
+            <img id="article-lightbox-img" src="/mnt/data/ARTICLE1.jpeg" alt="Raksts par Strazdiņi">
             <button class="lightbox-close" onclick="closeArticleLightbox()">×</button>
         </div>
     </div>
     <script>
         // Only images starting with "_"
         const galleryImages = [
-            "/mnt/data/_IGP9657.jpg",
-            "/mnt/data/_IGP9627.JPG",
-            "/mnt/data/_IGP9599.JPG"
+            "/mnt/data/IMAGE1.jpeg",
+            "/mnt/data/IMAGE2.jpeg",
+            "/mnt/data/IMAGE3.jpeg",
+            "/mnt/data/IMAGE4.jpeg",
+            "/mnt/data/IMAGE5.jpeg",
+            "/mnt/data/IMAGE6.jpeg",
+            "/mnt/data/IMAGE7.jpeg",
+            "/mnt/data/IMAGE8.jpeg",
+            "/mnt/data/IMAGE9.jpeg",
+            "/mnt/data/IMAGE10.jpeg",
+            "/mnt/data/IMAGE11.jpeg",
+            "/mnt/data/IMAGE12.jpeg",
+            "/mnt/data/IMAGE13.jpeg",
+            "/mnt/data/IMAGE14.jpeg",
+            "/mnt/data/IMAGE15.jpeg",
+            "/mnt/data/IMAGE16.jpeg"
         ];
         let galleryIndex = 0;
         function updateMainGallery() {
@@ -487,7 +498,7 @@
         setLang(currentLang);
     </script>
  <footer>
-    2025 ZS Strazdiņi.
+    2025 ZS Strazdiņi. <br>
     Visas tiesības aizsargātas.
   </footer>
 </body>
