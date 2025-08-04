@@ -296,15 +296,6 @@
                 Viens no iecienītākajiem produktiem ir grauzdētas un piestā grūstas kaņepes – dabisks un bagātīgs uztura papildinājums.
                 Ja vēlaties sazināties vai uzzināt vairāk par mūsu produktiem, lūdzu izmantojiet kontaktinformāciju, kas norādīta zemāk.
             </div>
-            <div class="section-title">Kur iegādāties?</div>
-            <div class="contacts">
-              🧺 Nedēļas nogalēs:
-              <p id="markets-list">
-            </div>
-            <div class="contacts">
-              🛒 Patstāvīgi:
-              <p id="shops-list">
-            </div>
             <div class="section-title">Kontakti</div>
             <div class="contacts">
                 <b>📞 Tālrunis:</b> <a href="tel:+3726495405">+371 26495405</a><br>
@@ -406,52 +397,6 @@
             </div>
         </div>
     <script>
-        //Markets
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('https://raw.githubusercontent.com/jashijs/strazdio-lists/main/tirgus.txt')
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Failed to load markets list');
-              }
-              return response.text();
-            })
-            .then(data => 
-              console.log(data);
-              document.getElementById('list').textContent = data;
-              const container = document.getElementById('markets-list');
-              text.trim().split('\n').forEach(line => {
-                if (!line) return;
-                const parts = line.split(' - ');
-                const date = parts[0].trim();
-                const name = parts.slice(1).join(' - ').trim();
-                const p = document.createElement('li');
-                p.innerHTML = `<strong>${date}</strong> – ${name}`;
-                container.appendChild(p);
-              });
-            })
-            .catch(err => console.error(err));
-        });
-        //Shops
-        document.addEventListener('DOMContentLoaded', function() {
-          fetch('/lists/veikali.txt')
-            .then(response => {
-              if (!response.ok) throw new Error('Failed to load markets list');
-              return response.text();
-            })
-            .then(text => {
-              const container = document.getElementById('markets-list');
-              text.trim().split('\n').forEach(line => {
-                if (!line) return;
-                const parts = line.split(' - ');
-                const date = parts[0].trim();
-                const name = parts.slice(1).join(' - ').trim();
-                const p = document.createElement('li');
-                p.innerHTML = `<strong>${date}</strong> – ${name}`;
-                container.appendChild(p);
-              });
-            })
-            .catch(err => console.error(err));
-        });
       const galleryImages = [
             "/mnt/data/IMAGE0.jpeg",
             "/mnt/data/IMAGE1.jpeg",
