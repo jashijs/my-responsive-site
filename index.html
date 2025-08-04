@@ -416,8 +416,6 @@
         return response.text();
       })
       .then(data => {
-        console.log(data);
-        document.getElementById('list').textContent = data;
         const container = document.getElementById('markets-list');
               data.trim().split('\n').forEach(line => {
                 if (!line) return;
