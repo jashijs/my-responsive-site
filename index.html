@@ -296,6 +296,11 @@
                 Viens no iecienītākajiem produktiem ir grauzdētas un piestā grūstas kaņepes – dabisks un bagātīgs uztura papildinājums.
                 Ja vēlaties sazināties vai uzzināt vairāk par mūsu produktiem, lūdzu izmantojiet kontaktinformāciju, kas norādīta zemāk.
             </div>
+            <div class="section-title">Meklējiet mūs</div>
+            <div class="contacts">
+              <ul id="markets-list">
+              </ul>
+            </div>
             <div class="section-title">Kontakti</div>
             <div class="contacts">
                 <b>📞 Tālrunis:</b> <a href="tel:+3726495405">+371 26495405</a><br>
@@ -397,6 +402,26 @@
             </div>
         </div>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          fetch('/lists/tirgus.txt')
+            .then(response => {
+              if (!response.ok) throw new Error('Failed to load markets list');
+              return response.text();
+            })
+            .then(text => {
+              const ul = document.getElementById('markets-list');
+              text.trim().split('\n').forEach(line => {
+                if (!line) return;
+                const parts = line.split(' - ');
+                const date = parts[0].trim();
+                const name = parts.slice(1).join(' - ').trim();
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${date}</strong> – ${name}`;
+                ul.appendChild(li);
+              });
+            })
+            .catch(err => console.error(err));
+        });
       const galleryImages = [
             "/mnt/data/IMAGE0.jpeg",
             "/mnt/data/IMAGE1.jpeg",
