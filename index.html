@@ -419,16 +419,16 @@
         console.log(data);
         document.getElementById('list').textContent = data;
         const container = document.getElementById('markets-list');
-        data.trim().split('\n').forEach(line => {
-          if (!line) return;
-          const parts = line.split(' - ');
-          const date = parts[0].trim();
-          const name = parts.slice(1).join(' - ').trim();
-          const li = document.createElement('li');
-          li.innerHTML = `<strong>${date}</strong> – ${name}`;
-          container.appendChild(li);
-        });
-      })
+              data.trim().split('\n').forEach(line => {
+                if (!line) return;
+                const parts = line.split(' - ');
+                const date = parts[0].trim();
+                const name = parts.slice(1).join(' - ').trim();
+                const p = document.createElement('li');
+                p.innerHTML = `<strong>${date}</strong> – ${name}`;
+                container.appendChild(p);
+              });
+            })          
       .catch(err => console.error(err));
   });
       const galleryImages = [
