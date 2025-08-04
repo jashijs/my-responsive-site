@@ -298,11 +298,11 @@
             </div>
             <div class="section-title">Kur iegādāties?</div>
                 <div class="contacts">
-                  🧺 Nedēļas nogalēs:
+                  🧺 Nedēļas nogalē tirgos:
                   <div id="markets-list"></div>
                 </div>
                 <div class="contacts">
-                  🛒 Patstāvīgi:
+                  🛒 Patstāvīgi veikalos:
                   <div id="shops-list"></div>
                 </div>
             <div class="section-title">Kontakti</div>
@@ -422,13 +422,36 @@
                 const parts = line.split(' - ');
                 const date = parts[0].trim();
                 const name = parts.slice(1).join(' - ').trim();
-                const p = document.createElement('p');
+                const p = document.createElement('br');
                 p.innerHTML = `<strong>${date}</strong> – ${name}`;
                 container.appendChild(p);
               });
             })          
       .catch(err => console.error(err));
-  });
+      });
+        // Shops
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://raw.githubusercontent.com/jashijs/strazdio-lists/main/veikalis.txt')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to load shops list');
+        }
+        return response.text();
+      })
+      .then(data => {
+        const container = document.getElementById('shops-list');
+              data.trim().split('\n').forEach(line => {
+                if (!line) return;
+                const parts = line.split(' - ');
+                const date = parts[0].trim();
+                const name = parts.slice(1).join(' - ').trim();
+                const p = document.createElement('br');
+                p.innerHTML = `<strong>${date}</strong> – ${name}`;
+                container.appendChild(p);
+              });
+            })          
+      .catch(err => console.error(err));
+      });
       const galleryImages = [
             "/mnt/data/IMAGE0.jpeg",
             "/mnt/data/IMAGE1.jpeg",
