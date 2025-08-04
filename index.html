@@ -408,11 +408,16 @@
     <script>
         //Markets
         document.addEventListener('DOMContentLoaded', function() {
-          fetch('https://raw.githubusercontent.com/jashijs/strazdio-lists/main/tirgus.txt')
+            fetch('https://raw.githubusercontent.com/jashijs/strazdio-lists/main/tirgus.txt')
             .then(response => {
-              if (!response.ok) throw new Error('Failed to load markets list');
+              if (!response.ok) {
+                throw new Error('Failed to load markets list');
+              }
               return response.text();
             })
+            .then(data => 
+              console.log(data);
+              document.getElementById('list').textContent = data;
               const container = document.getElementById('markets-list');
               text.trim().split('\n').forEach(line => {
                 if (!line) return;
