@@ -198,11 +198,14 @@
             width: 80vw;
             height: auto;           /* This keeps the aspect ratio */
             object-fit: contain;    /* Prevents stretching */
-}
+        }
         @media (max-width: 700px) {
+            main { padding: 0.3rem; }
             .gallery-main, .article-img, .contacts, .company { min-width: unset; width: 93vw; }
             .gallery-main { height: 45vw; max-height: 56vw; }
-            .logo-img { height: 110px; width: 110px; }
+            //.gallery-main { width: 98vw; height: 45vw; max-height: 56vw; }
+            //.article-img { max-width: 99vw; max-height: 65vw; }
+            //.logo-img { height: 110px; width: 110px; }
             header { min-height: 120px; }
         }
         /* Lightbox styles for gallery & article */
@@ -261,14 +264,6 @@
             border: none;
             user-select: none;
             z-index: 1002;
-        }
-        @media (max-width: 700px) {
-            main { padding: 0.3rem; }
-            .gallery-main { width: 98vw; height: 45vw; max-height: 56vw; }
-            .article-img { max-width: 99vw; max-height: 65vw; }
-            .contacts, .company { min-width: unset; width: 93vw; }
-            //.logo-img { height: 110px; width: 110px; }
-            header { min-height: 120px; }
         }
     </style>
 <!-- Google tag (gtag.js) -->
