@@ -430,9 +430,9 @@
                 const parts = line.split(' - ');
                 const date = parts[0].trim();
                 const name = parts.slice(1).join(' - ').trim();
-                //const p = document.createElement('');
-                p.innerHTML = `<strong>${date}</strong> – ${name}`;
-                //container.appendChild(p);
+                const p = document.createElement('p');
+                p.innerHTML = `<b>${date}</b> – ${name}`;
+                container.appendChild(p);
               });
             })          
       .catch(err => console.error(err));
@@ -454,7 +454,7 @@
                 const date = parts[0].trim();
                 const name = parts.slice(1).join(' - ').trim();
                 const p = document.createElement('p');
-                p.innerHTML = `<strong>${date}</strong> – ${name}`;
+                p.innerHTML = `<b>${date}</b> – ${name}`;
                 container.appendChild(p);
               });
             })          
