@@ -430,7 +430,7 @@
                 const parts = line.split(' - ');
                 const date = parts[0].trim();
                 const name = parts.slice(1).join(' - ').trim();
-                //const p = document.createElement('p');
+                const p = document.createElement('');
                 p.innerHTML = `<strong>${date}</strong> – ${name}`;
                 container.appendChild(p);
               });
@@ -439,7 +439,7 @@
       });
         // Shops
   document.addEventListener('DOMContentLoaded', function() {
-    fetch('https://raw.githubusercontent.com/jashijs/strazdio-lists/main/veikalis.txt')
+    fetch('https://raw.githubusercontent.com/jashijs/strazdio-lists/main/veikali.txt')
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to load shops list');
