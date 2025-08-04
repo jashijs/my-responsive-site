@@ -49,14 +49,26 @@
           text-align: center;
         }
         .logo-img {
-          width: 42vw;
-          max-width: 520px;
-          min-width: 260px;
-          height: auto;
           display: inline-block;
+          width: 50vw;                 /* default = half viewport (mobile) */
+          max-width: 520px;            /* optional caps */
+          min-width: 260px;            /* optional floors */
+          height: auto;
           border-radius: 10px;
           object-fit: contain;
-        } 
+        }
+        /* from about tablet size up to MacBook 14" (≈ 1512px logical px) */
+        @media screen and (min-width: 768px) {
+          .logo-img {
+            width: 25vw;           /* = (50vw) ÷ 3 */
+          }
+        }
+        /* on really big screens (full desktop) */
+        @media screen and (min-width: 1512px) {
+          .logo-img {
+            width: 15vw;               /* quarter of the viewport */
+          }
+        }
         .lang-switch {
             position: absolute;
             top: 18px;
